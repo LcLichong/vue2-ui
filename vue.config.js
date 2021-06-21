@@ -2,7 +2,13 @@ const path = require('path')
 const vantTheme = path.resolve(__dirname, "src/styles/theme.less")
 
 module.exports = {
-    publicPath: '././',
+    devServer: {
+        open: true,
+        host: 'localhost',
+        port: '3000',
+        hotOnly: true
+    },
+    publicPath: './',
     css: {
         loaderOptions: {
             less: {
@@ -15,5 +21,11 @@ module.exports = {
                 }
             }
         }
+    },
+    chainWebpack: config => {
+        config.plugin('html').tap(options => {
+            options[0].title = '测试页面'
+            return options
+        })
     }
 }
