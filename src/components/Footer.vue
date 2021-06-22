@@ -1,24 +1,10 @@
 <template>
   <div v-if="show" class="footer">
     <div @click="idx = 0" v-show="idx != 0" class="footer-overlay"></div>
-    <div
-      v-for="f in FooterList"
-      :key="f.idx"
-      @click="footerClick(f.idx)"
-      class="footer-div"
-      :style="{ width: width + 'vw' }"
-    >
+    <div v-for="f in FooterList" :key="f.idx" @click="footerClick(f.idx)" class="footer-div" :style="{ width: width + 'vw' }">
       {{ f.label }}
-      <div
-        :class="[idx === f.idx ? 'footer-menu-active' : '']"
-        class="footer-menu"
-      >
-        <div
-          @click="menuClick($event, m)"
-          v-for="m in f.menuList"
-          :key="m.idx"
-          class="footer-menu-div"
-        >
+      <div :class="[idx === f.idx ? 'footer-menu-active' : '']" class="footer-menu">
+        <div @click="menuClick($event, m)" v-for="m in f.menuList" :key="m.idx" class="footer-menu-div">
           {{ m.label }}
         </div>
       </div>
@@ -43,14 +29,14 @@ export default {
   props: {
     FooterList: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data () {
     return {
       idx: 0,
       width: 0,
-      show: true
+      show: true,
     }
   },
   methods: {
@@ -65,8 +51,8 @@ export default {
         e.cancelBubble = true // 其他浏览器阻止事件冒泡
       }
       this.$emit('menuClick', obj)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -115,7 +101,7 @@ export default {
     }
   }
   .footer-div:not(:first-child):not(:last-child):before {
-    content: "";
+    content: '';
     position: absolute;
     right: 0px;
     display: inline-block;

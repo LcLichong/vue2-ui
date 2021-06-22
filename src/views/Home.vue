@@ -2,11 +2,7 @@
   <div class="home">
     <van-nav-bar title="标题" />
     <van-swipe class="swipe" :autoplay="5000">
-      <van-swipe-item
-        @click="swipeClick"
-        v-for="(image, index) in images"
-        :key="index"
-      >
+      <van-swipe-item @click="swipeClick" v-for="(image, index) in images" :key="index">
         <img class="swipe-img" v-lazy="image" />
       </van-swipe-item>
     </van-swipe>
