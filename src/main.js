@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import { NavBar } from 'vant'
+import { NavBar, Dialog, Swipe, SwipeItem, Lazyload } from 'vant'
 
-Vue.use(NavBar)
 Vue.config.productionTip = false
+Vue.use(NavBar)
+Vue.use(Dialog)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Lazyload)
 
 new Vue({
     router,

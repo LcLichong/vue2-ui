@@ -24,7 +24,7 @@ module.exports = {
     },
     chainWebpack: config => {
         config.plugin('html').tap(options => {
-            options[0].title = '测试页面'
+            options[0].title = 'vant-theme'
             return options
         })
     }
