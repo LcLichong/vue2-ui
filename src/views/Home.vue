@@ -1,53 +1,59 @@
 <template>
   <div class="home">
-    <van-nav-bar title="标题" />
-    <van-swipe class="swipe" :autoplay="5000">
-      <van-swipe-item @click="swipeClick" v-for="(image, index) in images" :key="index">
-        <img class="swipe-img" v-lazy="image" />
-      </van-swipe-item>
-    </van-swipe>
+    <Header title="首页" height="46px"></Header>
+    <Swipe class="c-swipe" :speed="speed">
+      <SwipeItem v-for="(img, key) in images" @click.native="swipeClick(img)" :key="key">
+        <img :src="img.url" :key="key" />
+      </SwipeItem>
+    </Swipe>
     <Footer :FooterList="FooterList" @menuClick="menuClick"></Footer>
   </div>
 </template>
 
 <script>
-import Footer from '../components/Footer.vue'
+import Footer from '../components/CFooter/Footer.vue'
+import Header from '../components/CHeader/Header.vue'
+import Swipe from '../components/CSwipe/Swipe.vue'
+import SwipeItem from '../components/CSwipeItem/SwipeItem.vue'
 
 export default {
   name: 'Home',
   components: {
-    Footer
+    Footer,
+    Header,
+    Swipe,
+    SwipeItem
   },
   data () {
     return {
       FooterList: [
         {
           idx: 1,
-          label: '底部导航一',
+          name: '底部导航一',
           menuList: [
             {
-              label: '菜单1',
-              url: '',
+              name: 'CUI',
+              url: '/CUIView',
               idx: 'menu1'
             },
             {
-              label: '菜单2',
-              url: '',
+              name: 'Vant',
+              url: '/VantHeader',
               idx: 'menu2'
             }
           ]
         },
         {
           idx: 2,
-          label: '底部导航二',
+          name: '底部导航二',
           menuList: [
             {
-              label: '菜单3',
-              url: '',
+              name: '菜单3',
+              url: 'http://www.baidu.com',
               idx: 'menu3'
             },
             {
-              label: '菜单4',
+              name: '菜单4',
               url: '',
               idx: 'menu4'
             }
@@ -55,55 +61,61 @@ export default {
         },
         {
           idx: 3,
-          label: '底部导航三',
+          name: '底部导航三',
           menuList: [
             {
-              label: '菜单5',
-              url: '',
+              name: '菜单5',
+              url: 'fasdfa',
               idx: 'menu5'
             },
             {
-              label: '菜单6',
+              name: '菜单6',
               url: '',
               idx: 'menu6'
-            }
-          ]
-        },
-        {
-          idx: 4,
-          label: '底部导航四',
-          menuList: [
-            {
-              label: '菜单7',
-              url: '',
-              idx: 'menu7'
-            },
-            {
-              label: '菜单8',
-              url: '',
-              idx: 'menu8'
             }
           ]
         }
       ],
       images: [
-        'https://img01.yzcdn.cn/vant/apple-1.jpg',
-        'https://img01.yzcdn.cn/vant/apple-2.jpg',
+        {
+          url: require('../assets/slidec.jpg'),
+          key: 'img1'
+        },
+        {
+          url: require('../assets/slided.jpg'),
+          key: 'img2'
+        },
+        {
+          url: require('../assets/slidee.jpg'),
+          key: 'img3'
+        }
       ],
+      speed: 5000,
       idx: 0
     }
   },
   methods: {
-    menuClick (obj) {
-      this.$dialog.alert({
-        title: '提示',
-        message: `我是${obj.label}`
-      })
+    menuClick (m) {
+      if (!m.url) {
+        this.$dialog.alert({
+          title: '提示',
+          message: '敬请期待'
+        })
+      } else if (m.url.substring(0, 1) === '/') {
+        this.$router.push({ path: m.url })
+      } else if (m.url.startsWith('http') || m.url.startsWith('https')) {
+        window.location.href = m.url
+      } else {
+        this.$dialog.alert({
+          title: '提示',
+          message: '链接格式不正确'
+        })
+      }
     },
-    swipeClick () {
+    swipeClick (img) {
       this.$dialog.alert({
         title: '提示',
-        message: '轮播图点击'
+        message: `轮播图点击,我的key是：${img.key}`
       })
     }
   }
@@ -114,11 +126,7 @@ export default {
 .home {
   height: 100vh;
 }
-
-.swipe {
-  height: 35vh;
-  .swipe-img {
-    height: 100%;
-  }
+.c-swipe {
+  height: 43.98vw;
 }
 </style>
