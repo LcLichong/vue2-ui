@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Header from '../components/CHeader/Header.vue'
-import Swipe from '../components/CSwipe/Swipe.vue'
-import SwipeItem from '../components/CSwipeItem/SwipeItem.vue'
+import Header from '../components/CHeader/index.vue'
+import Swipe from '../components/CSwipe/index.vue'
+import SwipeItem from '../components/CSwipeItem/index.vue'
 
 export default {
   components: {

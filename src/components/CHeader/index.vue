@@ -58,5 +58,5 @@ export default {
 </script>
 
 <style lang="less">
-@import 'header.less';
+@import 'index.less';
 </style>

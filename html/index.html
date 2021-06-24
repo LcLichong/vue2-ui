@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>CUI</title>
+    <script src="./js/vue.min.js"></script>
+    <script type="module" src="../src/components/index.js"></script>
+    <style>
+        #app {
+            font-family: Avenir, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        html {
+            margin: 0px;
+            font-size: 15px;
+        }
+        
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <Footer :FooterList="FooterList" @menuClick="menuClick"></Footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                FooterList: [{
+                    idx: 1,
+                    name: '底部导航一',
+                    menuList: [{
+                        name: 'CUI',
+                        url: '/CUIView',
+                        idx: 'menu1'
+                    }, {
+                        name: 'Vant',
+                        url: '/VantHeader',
+                        idx: 'menu2'
+                    }]
+                }, {
+                    idx: 2,
+                    name: '底部导航二',
+                    menuList: [{
+                        name: '菜单3',
+                        url: 'http://www.baidu.com',
+                        idx: 'menu3'
+                    }, {
+                        name: '菜单4',
+                        url: '',
+                        idx: 'menu4'
+                    }]
+                }, {
+                    idx: 3,
+                    name: '底部导航三',
+                    menuList: [{
+                        name: '菜单5',
+                        url: 'fasdfa',
+                        idx: 'menu5'
+                    }, {
+                        name: '菜单6',
+                        url: '',
+                        idx: 'menu6'
+                    }]
+                }],
+            },
+            methods: {
+                menuClick(m) {
+                    alert(`${m.url}`)
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -11,15 +11,13 @@
 </template>
 
 <script>
-import Footer from '../components/CFooter/Footer.vue'
-import Header from '../components/CHeader/Header.vue'
-import Swipe from '../components/CSwipe/Swipe.vue'
-import SwipeItem from '../components/CSwipeItem/SwipeItem.vue'
+import Header from '../components/CHeader/index.vue'
+import Swipe from '../components/CSwipe/index.vue'
+import SwipeItem from '../components/CSwipeItem/index.vue'
 
 export default {
   name: 'Home',
   components: {
-    Footer,
     Header,
     Swipe,
     SwipeItem

@@ -2,6 +2,7 @@ const path = require('path')
 const vantTheme = path.resolve(__dirname, "src/styles/theme.less")
 
 module.exports = {
+    productionSourceMap: process.env.NODE_ENV !== 'production',
     devServer: {
         open: true,
         host: 'localhost',
@@ -27,5 +28,15 @@ module.exports = {
             options[0].title = 'vant-theme'
             return options
         })
+    },
+    configureWebpack: (config) => {
+        if (process.env.NODE_ENV === 'production') {
+            // 为生产环境修改配置...
+            config.mode = 'production'
+            config["performance"] = { //打包文件大小配置
+                "maxEntrypointSize": 10000000,
+                "maxAssetSize": 30000000
+            }
+        }
     }
 }
