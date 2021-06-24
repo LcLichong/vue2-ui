@@ -62,9 +62,9 @@ export default {
         this.$refs.cs[0].classList.add('i-active')
       })
       this.interval = setInterval(function () {
-        console.log('setInterval...')
+        // console.log('setInterval...')
         if (count == slide_div.length) {
-          console.log('重置')
+          // console.log('重置')
           count = 0
           self.$refs.main.style.transitionDuration = '0ms'
           self.$refs.main.style.transform = 'translateX(0px)'
@@ -73,16 +73,16 @@ export default {
 
           setTimeout(() => {
             count++
-            console.log(count * width)
+            // console.log(count * width)
             self.removeClass(self.$refs.cs)
             self.$refs.cs[count].classList.add('i-active')
             self.$refs.main.style.transitionDuration = `${self.transitionSpeed}ms`
             self.$refs.main.style.transform = `translateX(-${(count) * width}px)`
           }, 0)
         } else {
-          console.log('下一张')
+          // console.log('下一张')
           ++count
-          console.log(count * width)
+          // console.log(count * width)
 
           let csIdx = 0
           if (count <= self.$refs.cs.length - 1) {
