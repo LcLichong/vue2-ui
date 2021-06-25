@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import CUIView from '../views/CUIView.vue'
-import VantHeader from '../views/VantHeader.vue'
+const Home = () =>
+    import ('../views/Home.vue')
+const CUIView = () =>
+    import ('../views/CUIView.vue')
+const VantHeader = () =>
+    import ('../views/VantHeader.vue')
 
 Vue.use(VueRouter)
 

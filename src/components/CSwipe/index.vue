@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'Swipe',
   created () {
     this.transitionSpeed = this.tSpeed
   },

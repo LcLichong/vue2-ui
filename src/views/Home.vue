@@ -11,17 +11,10 @@
 </template>
 
 <script>
-import Header from '../components/CHeader/index.vue'
-import Swipe from '../components/CSwipe/index.vue'
-import SwipeItem from '../components/CSwipeItem/index.vue'
 
 export default {
   name: 'Home',
-  components: {
-    Header,
-    Swipe,
-    SwipeItem
-  },
+  components: {},
   data () {
     return {
       FooterList: [

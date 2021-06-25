@@ -1,9 +1,12 @@
 import Footer from './CFooter'
-var version = '1.0'
+import Swipe from './CSwipe'
+import SwipeItem from './CSwipeItem'
+import Header from './CHeader'
+const version = '1.0'
 
 function install(Vue) {
     console.log('install for Vue...')
-    var components = [Footer]
+    let components = [Footer, Swipe, SwipeItem, Header]
     components.forEach(function(item) {
         if (item.install) {
             Vue.use(item)
