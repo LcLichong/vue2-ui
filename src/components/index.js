@@ -9,6 +9,7 @@ function install(Vue) {
     let components = [Footer, Swipe, SwipeItem, Header]
     components.forEach(function(item) {
         if (item.install) {
+            // 暂不支持install方式
             Vue.use(item)
         } else if (item.name) {
             Vue.component(item.name, item)
