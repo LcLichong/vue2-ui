@@ -27,8 +27,6 @@ export default {
             this.idx = idx === this.idx ? 0 : idx
         },
         menuClick: function menuClick(m, e) {
-            console.log('m,', m)
-            console.log('e', e)
             e = window.event || e
             if (e.stopPropagation) {
                 e.stopPropagation() // IE下阻止事件冒泡

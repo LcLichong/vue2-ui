@@ -4,7 +4,6 @@ import router from './router'
 import { NavBar, Dialog, Swipe, SwipeItem, Lazyload } from 'vant'
 import Cui from './components/index'
 import './components/index.less'
-// import { Footer } from './components/index'
 
 Vue.config.productionTip = false
 Vue.use(NavBar)

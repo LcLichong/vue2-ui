@@ -1,26 +1,26 @@
 <template>
-  <div class="cs-slide-div">
-    <slot></slot>
-  </div>
+    <div class="cs-slide-div">
+        <slot></slot>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'SwipeItem',
-  created () {
+    name: 'SwipeItem',
+    created () {
 
-  },
-  mounted () {
+    },
+    mounted () {
 
-  },
-  props: {
-    speed: {
+    },
+    props: {
+        speed: {
 
+        }
+    },
+    data: function () {
+        return {}
     }
-  },
-  data: function () {
-    return {}
-  }
 }
 </script>
 
