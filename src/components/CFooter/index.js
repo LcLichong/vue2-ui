@@ -1,3 +1,10 @@
+/*
+ * @Author: LcLichong 
+ * @Date: 2021-07-06 16:10:05 
+ * @Last Modified by:   LcLichong 
+ * @Last Modified time: 2021-07-06 16:10:05 
+ */
+
 export default {
     name: 'Footer',
     created: function created() {

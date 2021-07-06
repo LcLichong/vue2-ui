@@ -1,15 +1,22 @@
-import Vue from 'vue'
+/*
+ * @Author: LcLichong 
+ * @Date: 2021-07-06 16:02:57 
+ * @Last Modified by: LcLichong
+ * @Last Modified time: 2021-07-06 16:09:54
+ */
 
-function Dialog() {
-    this.dialog = null
-    this.overlay = null
-    this.name = 'Dialog'
-}
+import Vue from 'vue'
+import { getFnName } from '../utiles'
+
+function Dialog() {}
+
+let cache = Object.create(null)
 
 Dialog.prototype.alert = function(options) {
-    if (!this.dialog) {
-        let self = this
-        this.dialog = new Vue({
+    let dialog = 'dialog'
+    let overlay = 'overlay'
+    if (!cache[dialog]) {
+        cache[dialog] = new Vue({
             created() {
                 this.title = options.title
                 this.message = options.message
@@ -92,35 +99,34 @@ Dialog.prototype.alert = function(options) {
                 }
             }
         })
-
-        this.overlay = new Vue({
+        cache[overlay] = new Vue({
             render(h) {
                 return h('div', {
-                    'class': ['cs-dialog-overlay', `${self.dialog.opacity ? 'cs-dialog-overlay-show' : 'cs-dialog-overlay-hide'}`],
+                    'class': ['cs-dialog-overlay', `${cache[dialog].opacity ? 'cs-dialog-overlay-show' : 'cs-dialog-overlay-hide'}`],
                     'style': {
-                        'display': self.dialog.display ? 'block' : 'none'
+                        'display': cache[dialog].display ? 'block' : 'none'
                     }
                 }, [])
             }
         })
-
         if (document.body) {
-            let overlay = this.overlay.$mount().$el
-            document.body.appendChild(overlay)
-            let dialog = this.dialog.$mount().$el
-            document.body.appendChild(dialog)
+            let overlayDom = cache[overlay].$mount().$el
+            document.body.appendChild(overlayDom)
+            let dialogDom = cache[dialog].$mount().$el
+            document.body.appendChild(dialogDom)
         }
     } else {
-        this.dialog.title = options.title
-        this.dialog.message = options.message
-        this.dialog.time = options.time
-        this.dialog.showDialog()
+        cache[dialog].title = options.title
+        cache[dialog].message = options.message
+        cache[dialog].time = options.time
+        cache[dialog].showDialog()
     }
 }
 
 Dialog.prototype.install = function(Vue) {
-    Vue.prototype['$' + this.name] = dialog
+    Vue.prototype['$' + getFnName(Dialog)] = dialog
 }
+
 
 let dialog = new Dialog()
 

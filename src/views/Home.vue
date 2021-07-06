@@ -91,31 +91,23 @@ export default {
     methods: {
         menuClick (m) {
             if (!m.url) {
-                console.log(this.$Dialog)
                 this.$Dialog.alert({
                     title: '提示',
-                    message: 'Hello World<br>敬请期待'
+                    message: '敬请期待'
                 })
-                // Dialog.alert({
-                //     title: '提示',
-                //     message: '敬请期待'
-                // })
-                // setTimeout(() => {
-                //     Dialog.dialog.message = '12121'
-                // }, 2000)
             } else if (m.url.substring(0, 1) === '/') {
                 this.$router.push({ path: m.url })
             } else if (m.url.startsWith('http') || m.url.startsWith('https')) {
                 window.location.href = m.url
             } else {
-                this.$dialog.alert({
+                this.$Dialog.alert({
                     title: '提示',
                     message: '链接格式不正确'
                 })
             }
         },
         swipeClick (img) {
-            this.$dialog.alert({
+            this.$Dialog.alert({
                 title: '提示',
                 message: `轮播图点击,我的key是：${img.key}`
             })
