@@ -6,31 +6,78 @@
   left: 0;
   bottom: 0;
   margin: auto;
-  width: 30vw;
-  height: 30vw;
+  width: 80vw;
+  height: 40vw;
   font-size: 16px;
   background-color: #fff;
   border-radius: 16px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 0;
+  .cs-dialog-title {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: 500;
+  }
+  .cs-dialog-content {
+    height: 50%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #646566;
+    font-size: 14px;
+    padding: 0px 20px;
+    line-height: 25px;
+  }
+  .cs-dialog-confirm {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    .cs-dialog-confirm-button {
+      width: 80%;
+      height: 80%;
+      background-color: #fff;
+      border: none;
+      outline: none;
+      color: #ee0a24;
+    }
+  }
+  .cs-dialog-confirm::after {
+    position: absolute;
+    box-sizing: border-box;
+    content: " ";
+    pointer-events: none;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    border-top: 1px solid #ebedf0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
 }
 
 .cs-dialog-show {
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  -ms-transition: all 1.5s;
-  -o-transition: all 1.5s;
-  transition: all 1.5s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   opacity: 1;
 }
 
 .cs-dialog-hide {
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  -ms-transition: all 1.5s;
-  -o-transition: all 1.5s;
-  transition: all 1.5s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   opacity: 0;
 }
 
@@ -46,19 +93,19 @@
 }
 
 .cs-dialog-overlay-show {
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  -ms-transition: all 1.5s;
-  -o-transition: all 1.5s;
-  transition: all 1.5s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   opacity: 1;
 }
 
 .cs-dialog-overlay-hide {
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  -ms-transition: all 1.5s;
-  -o-transition: all 1.5s;
-  transition: all 1.5s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   opacity: 0;
 }

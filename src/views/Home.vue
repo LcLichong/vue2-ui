@@ -59,7 +59,7 @@ export default {
                     menuList: [
                         {
                             name: '菜单5',
-                            url: 'fasdfa',
+                            url: 'xxxx',
                             idx: 'menu5'
                         },
                         {
@@ -91,17 +91,18 @@ export default {
     methods: {
         menuClick (m) {
             if (!m.url) {
+                console.log(this.$Dialog)
                 this.$Dialog.alert({
                     title: '提示',
-                    message: 'Hello World'
+                    message: 'Hello World<br>敬请期待'
                 })
                 // Dialog.alert({
                 //     title: '提示',
                 //     message: '敬请期待'
                 // })
                 // setTimeout(() => {
-                //     Dialog.dialog.title = '12121'
-                // }, 1000)
+                //     Dialog.dialog.message = '12121'
+                // }, 2000)
             } else if (m.url.substring(0, 1) === '/') {
                 this.$router.push({ path: m.url })
             } else if (m.url.startsWith('http') || m.url.startsWith('https')) {

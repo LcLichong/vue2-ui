@@ -6,77 +6,89 @@ function Dialog() {
     this.name = 'Dialog'
 }
 
-Dialog.prototype.alert = function(data) {
+Dialog.prototype.alert = function(options) {
     if (!this.dialog) {
         let self = this
         this.dialog = new Vue({
             created() {
-                this.display = true
-                setTimeout(() => {
-                    this.opacity = true
-                })
+                this.title = options.title
+                this.message = options.message
+                this.time = options.time
+                this.showDialog()
             },
             data() {
                 return {
-                    title: data.title,
-                    message: data.message,
-                    time: data.time,
+                    title: options.title,
+                    message: options.message,
+                    time: options.time,
                     opacity: false,
                     display: false,
-                    num: 0
-                }
-            },
-            watch: {
-                display(val) {
-                    console.log(this.num)
-                    if (this.time && this.num <= 1) {
-                        if (val) {
-                            setTimeout(() => {
-                                this.opacity = !val
-                                setTimeout(() => {
-                                    this.display = !val
-                                }, 1500)
-                            }, this.time)
-                        }
-                    } else {
-                        console.log(val)
-                        if (val) {
-                            this.display = val
-                            setTimeout(() => {
-                                this.opacity = val
-                            }, 1500)
-                        } else {
-                            this.opacity = val
-                            setTimeout(() => {
-                                this.display = val
-                            }, 1500)
-                        }
-                    }
-                    this.num++
+                    num: 0,
+                    transitionTime: 300
                 }
             },
             render(h) {
                 return h('div', {
-                    'class': ['cs-dialog', `${this.opacity ? 'cs-dialog-show' : 'cs-dialog-hide'}`],
-                    'style': {
+                    class: ['cs-dialog', `${this.opacity ? 'cs-dialog-show' : 'cs-dialog-hide'}`],
+                    style: {
                         'display': this.display ? 'block' : 'none'
                     }
                 }, [
-                    h('div', {}, [
-                        `标题是:${this.title},内容是:${this.message}`,
+                    h('div', {
+                        'class': 'cs-dialog-title'
+                    }, [
+                        this.title
+                    ]),
+                    h('div', {
+                        'domProps': {
+                            'innerHTML': this.message
+                        },
+                        'class': 'cs-dialog-content'
+                    }, [
+
+                    ]),
+                    h('div', {
+                        'class': 'cs-dialog-confirm'
+                    }, [
                         h('button', {
+                            'class': 'cs-dialog-confirm-button',
                             'on': {
                                 'click': this.btnClick
                             }
                         }, [
-                            '点我关闭'
+                            '确定'
                         ])
                     ])
                 ])
             },
             methods: {
                 btnClick() {
-                    this.display = false
+                    this.hideDialog()
+                },
+                showDialog() {
+                    if (this.time) {
+                        this.display = true
+                        setTimeout(() => {
+                            this.opacity = true
+                        })
+                        setTimeout(() => {
+                            this.opacity = false
+                            setTimeout(() => {
+                                this.display = false
+                            }, this.transitionTime)
+                        }, this.time)
+                    } else {
+                        this.display = true
+                        setTimeout(() => {
+                            this.opacity = true
+                        })
+                    }
+                },
+                hideDialog() {
+                    this.opacity = false
+                    setTimeout(() => {
+                        this.display = false
+                    }, this.transitionTime)
                 }
             }
         })
@@ -91,6 +103,7 @@ Dialog.prototype.alert = function(data) {
                 }, [])
             }
         })
+
         if (document.body) {
             let overlay = this.overlay.$mount().$el
             document.body.appendChild(overlay)
@@ -98,10 +111,10 @@ Dialog.prototype.alert = function(data) {
             document.body.appendChild(dialog)
         }
     } else {
-        this.dialog.title = data.title
-        this.dialog.message = data.message
-        this.dialog.time = data.time
-        this.dialog.display = true
+        this.dialog.title = options.title
+        this.dialog.message = options.message
+        this.dialog.time = options.time
+        this.dialog.showDialog()
     }
 }
 
