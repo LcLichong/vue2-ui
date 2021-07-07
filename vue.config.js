@@ -25,7 +25,7 @@ module.exports = {
     },
     chainWebpack: config => {
         config.plugin('html').tap(options => {
-            options[0].title = 'vant-theme'
+            options[0].title = 'vue2-ui'
             return options
         })
     },

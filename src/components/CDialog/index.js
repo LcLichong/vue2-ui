@@ -2,7 +2,7 @@
  * @Author: LcLichong 
  * @Date: 2021-07-06 16:02:57 
  * @Last Modified by: LcLichong
- * @Last Modified time: 2021-07-06 16:09:54
+ * @Last Modified time: 2021-07-07 13:54:50
  */
 
 import Vue from 'vue'
@@ -21,25 +21,18 @@ Dialog.prototype.alert = function(options) {
                 this.title = options.title
                 this.message = options.message
                 this.time = options.time
-                this.showDialog()
             },
             data() {
                 return {
                     title: options.title,
                     message: options.message,
                     time: options.time,
-                    opacity: false,
-                    display: false,
-                    num: 0,
-                    transitionTime: 300
+                    opacity: false
                 }
             },
             render(h) {
                 return h('div', {
-                    class: ['cs-dialog', `${this.opacity ? 'cs-dialog-show' : 'cs-dialog-hide'}`],
-                    style: {
-                        'display': this.display ? 'block' : 'none'
-                    }
+                    class: ['cs-dialog', `${this.opacity ? 'cs-dialog-show' : 'cs-dialog-hide'}`]
                 }, [
                     h('div', {
                         'class': 'cs-dialog-title'
@@ -74,38 +67,24 @@ Dialog.prototype.alert = function(options) {
                 },
                 showDialog() {
                     if (this.time) {
-                        this.display = true
-                        setTimeout(() => {
-                            this.opacity = true
-                        })
+                        this.opacity = true
                         setTimeout(() => {
                             this.opacity = false
-                            setTimeout(() => {
-                                this.display = false
-                            }, this.transitionTime)
                         }, this.time)
                     } else {
-                        this.display = true
-                        setTimeout(() => {
-                            this.opacity = true
-                        })
+                        this.opacity = true
                     }
                 },
                 hideDialog() {
                     this.opacity = false
-                    setTimeout(() => {
-                        this.display = false
-                    }, this.transitionTime)
                 }
             }
         })
+
         cache[overlay] = new Vue({
             render(h) {
                 return h('div', {
-                    'class': ['cs-dialog-overlay', `${cache[dialog].opacity ? 'cs-dialog-overlay-show' : 'cs-dialog-overlay-hide'}`],
-                    'style': {
-                        'display': cache[dialog].display ? 'block' : 'none'
-                    }
+                    'class': ['cs-dialog-overlay', `${cache[dialog].opacity ? 'cs-dialog-overlay-show' : 'cs-dialog-overlay-hide'}`]
                 }, [])
             }
         })
@@ -114,6 +93,10 @@ Dialog.prototype.alert = function(options) {
             document.body.appendChild(overlayDom)
             let dialogDom = cache[dialog].$mount().$el
             document.body.appendChild(dialogDom)
+
+            setTimeout(() => {
+                cache[dialog].showDialog()
+            })
         }
     } else {
         cache[dialog].title = options.title
