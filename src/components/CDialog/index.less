@@ -1,7 +1,7 @@
 @import "../styles/theme.less";
 
 .cs-dialog {
-  z-index: 3002;
+  z-index: 2001;
   position: fixed;
   top: 0;
   right: 0;
@@ -15,6 +15,11 @@
   border-radius: 16px;
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
   .cs-dialog-title {
     height: 20%;
     display: flex;
@@ -65,29 +70,19 @@
 }
 
 .cs-dialog-show {
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  -ms-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  transition: all 0.4s;
   visibility: visible;
   opacity: 1;
   transform: scale(1);
 }
 
 .cs-dialog-hide {
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  -ms-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  transition: all 0.4s;
   visibility: hidden;
   opacity: 0;
-  z-index: 0;
   transform: scale(0);
 }
 
 .cs-dialog-overlay {
+  z-index: 2000;
   position: fixed;
   top: 0;
   left: 0;
@@ -96,6 +91,11 @@
   background-color: rgba(0, 0, 0, 0.7);
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .cs-dialog-overlay-show {
@@ -104,8 +104,6 @@
 }
 
 .cs-dialog-overlay-hide {
-  z-index: 0;
   visibility: hidden;
   opacity: 0;
-  transform: scale(0);
 }
