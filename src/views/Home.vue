@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Header title="首页" height="46px"></Header>
-        <Swipe class="c-swipe" :speed="speed">
+        <Swipe class="swipe" :speed="speed">
             <SwipeItem v-for="(img, key) in images" @click.native="swipeClick(img)" :key="key">
                 <img :src="img.url" :key="key" />
             </SwipeItem>
@@ -120,7 +120,7 @@ export default {
 .home {
     height: 100vh;
 }
-.c-swipe {
+.swipe {
     height: 43.98vw;
 }
 </style>

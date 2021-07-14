@@ -6,6 +6,7 @@
                 <img :src="img.url" :key="key" />
             </SwipeItem>
         </Swipe>
+        <Cell v-for="(l, key) in 3" :title="title + key" :value="value" :key="key"></Cell>
     </div>
 </template>
 
@@ -37,13 +38,15 @@ export default {
                 }
             ],
             speed: 5000,
-            message: '你好'
+            message: '你好',
+            title: '单元格',
+            value: '内容'
         }
     }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .c-swipe {
     height: 43.98vw;
 }
